@@ -57,6 +57,11 @@
 			<version>2.2.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.6</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>4.0.1</version>
@@ -141,8 +146,8 @@
 								${project.basedir}/src/main/resources/openapi3_1.yaml
 							</inputSpec>
 							<generatorName>spring</generatorName>
-							<apiPackage>com.Microservice.shoppingService</apiPackage>
-							<modelPackage>com.Microservice.shoppingService.model</modelPackage>
+							<apiPackage>com.Microservice.clientService</apiPackage>
+							<modelPackage>com.Microservice.clientService.model</modelPackage>
 							<ignoreFileOverride>${project.basedir}/src/main/resources/swaggerIgnore</ignoreFileOverride>
 							<configOptions>
 								<delegatePattern>true</delegatePattern>

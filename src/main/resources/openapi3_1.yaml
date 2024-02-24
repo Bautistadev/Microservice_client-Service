@@ -1,0 +1,313 @@
+openapi: 3.1.0
+info:
+    title: "Client-Microservice"
+    summary: "Microservicio encargado de la gestion de la informacionde los clientes"
+    description: "En este microservicio se desarrollaran todas las operaciones y modulos que sean necesario para la recuperacion y gestion de los datso de los clientes"
+    contact:
+        name: Bautista
+        email: Batubasilio@hotmail.com
+    version: 1.0.0
+    license: 
+        name: "Apache 2.0"
+        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+servers:
+    - url: "http://localhost:{port}/api/{basePath}"
+      variables:
+        port:
+            enum:
+                - '8083'
+                - '8080'
+            default: '8080'
+        basePath:
+            default: v1
+tags:
+    - name: "Clients" 
+
+
+components:
+    schemas:
+        ClientDTO:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                name:
+                    type: string
+                lastname:
+                    type: string
+                dni:
+                    type: integer
+                    format: int32
+                    minLength: 12
+                cuil:
+                    type: integer 
+                    format: int32
+                    minLength: 17
+                email:
+                    type: string
+                    format: email
+                telephone:
+                    type: string
+                birth:
+                    type: string
+                    format: date
+                Address:
+                    type: object
+                    $ref: '#/components/schemas/AddressDTO'
+
+                
+
+        ClientRequestDTO:
+            type: object
+            properties:
+                name:
+                    type: string
+                lastname:
+                    type: string
+                dni:
+                    type: integer
+                    format: int32
+                    minLength: 12
+                cuil:
+                    type: integer 
+                    format: int32
+                    minLength: 17
+                email:
+                    type: string
+                    format: email
+                telephone:
+                    type: string
+                birth:
+                    type: string
+                    format: date
+                Address:
+                    type: object
+                    $ref: '#/components/schemas/AddressDTO'
+                    
+        ClientListDTO:
+            type: object
+            properties:
+                items:
+                    type: array
+                    items: 
+                        $ref: '#/components/schemas/ClientDTO'
+                    
+        AddressDTO:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                name:
+                    type: string
+                number:
+                    type: integer
+                    format: int32
+                location:
+                    type: object
+                    $ref: '#/components/schemas/LocationDTO'
+            
+
+        AddressRequestDTO:
+            type: object
+            properties:
+                name:
+                    type: string
+                number:
+                    type: integer
+                    format: int32
+                location:
+                    type: object
+                    $ref: '#/components/schemas/LocationDTO'
+
+        
+        AddressListDTO:
+            type: object
+            properties:
+                items:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/AddressDTO'
+
+        LocationDTO:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                name:
+                    type: string
+                postalCode:
+                    type: integer
+                    format: int32
+                province:
+                    type: object
+                    $ref: '#/components/schemas/ProvinceDTO'
+
+        LocationRequestDTO:
+            type: object
+            properties:
+                name:
+                    type: string
+                postalCode:
+                    type: integer
+                    format: int32
+                province:
+                    type: object
+                    $ref: '#/components/schemas/ProvinceDTO'
+
+        ProvinceDTO:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: int32
+                name:
+                    type: string
+
+        ProvinceRequestDTO:
+            type: object
+            properties:
+                name:
+                    type: string
+
+
+paths:
+    /clients:
+        post:
+            tags:
+                - Clients
+            security:
+                - bearerAuth: []
+            summary: Crear cliente
+            operationId: createClient
+            requestBody: 
+              content: 
+                application/json: 
+                  schema:
+                    $ref: '#/components/schemas/ClientRequestDTO'
+            responses:
+                200:
+                    description: Si la consulta no falla
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClientDTO'
+                    
+        put:
+            tags:
+                - Clients
+            security:
+                - bearerAuth: []
+            summary: Modificar cliente
+            operationId: updateClient
+            requestBody: 
+              content: 
+                application/json: 
+                  schema:
+                    $ref: '#/components/schemas/ClientDTO'
+            responses:
+                200:
+                    description: Si la consulta no falla
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClientDTO'
+        get:
+            tags:
+                - Clients
+            security:
+                - bearerAuth: []
+            summary: retrive all Clients
+            operationId: retriveAll
+            responses:
+                200:
+                    description: Si la consulta no falla
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClientListDTO'
+    /clients/{id}:  
+        get:
+            tags:
+                - Clients
+            security:
+                - bearerAuth: []
+            summary: retrive all Clients
+            operationId: retriveClientById
+            parameters:
+                - name: id
+                  in: path
+                  description: id del cliente
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                200:
+                    description: Si la consulta no falla
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClientDTO'
+
+        delete:
+            tags:
+                - Clients
+            security:
+                - bearerAuth: []
+            summary: remove client by id
+            operationId: removeClientById
+            parameters:
+                - name: id
+                  in: path
+                  description: id del cliente
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                200:
+                    description: Si la consulta no falla
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClientDTO'
+        
+    /clients/province/{idProvince}:
+        get:
+            tags:
+                - Clients
+            security:
+                - bearerAuth: []
+            summary: get all clients by province
+            operationId: getAllClientsByProvince
+            parameters:
+                - name: idProvince
+                  in: path
+                  description: id de la provincia
+                  required: true
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                200:
+                    description: si la consulta no falla
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClientListDTO'
+
+    
+    
+
+
+
+
+
+
+        
+        
+   
