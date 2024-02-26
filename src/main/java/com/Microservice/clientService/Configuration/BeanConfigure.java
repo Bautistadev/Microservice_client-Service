@@ -59,11 +59,5 @@ public class BeanConfigure {
         return new ClientService(clientRepository,clientMapper);
     }
 
-    /**
-     * CONTROLLER
-     * */
-    @Bean
-    public ClientsApiDelegate clientsController(ClientService clientService){
-        return new ClientController(clientService);
-    }
+
 }

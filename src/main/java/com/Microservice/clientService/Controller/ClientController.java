@@ -11,7 +11,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 import java.util.Optional;
 
-
+@RestController
+@RequestMapping("/api/v1/clients")
 public class ClientController implements ClientsApiDelegate {
 
     private ClientService clientService;
