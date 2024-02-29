@@ -31,6 +31,11 @@ public class ClientService {
         this.clientMapper = clientMapper;
     }
 
+    /**
+     * @Operation: save client
+     * @Param: ClientRequestDTO
+     * @Return: ClientDTO
+     * */
     public ClientDTO save(ClientRequestDTO clientRequestDTO) {
 
         AddressDTO addressDTO = clientRequestDTO.getAddress();
@@ -43,6 +48,11 @@ public class ClientService {
         return this.clientMapper.map(client);
     }
 
+    /**
+     * @Operation: Retrieve all clients
+     * @Param: -
+     * @Return: ClientDTO List
+     * */
     public List<ClientDTO> findAll(){
         List<ClientDTO> response = this.clientRepository.findAll().stream().map(e ->{
             return this.clientMapper.map(e);
@@ -51,11 +61,21 @@ public class ClientService {
         return response;
     }
 
+    /**
+     * @Operation: retrieve client by id
+     * @Param: Integer
+     * @Return: ClientDTO
+     * */
     public ClientDTO findById(Integer id){
         ClientEntity clientDB = this.clientRepository.findById(id).get();
         return this.clientMapper.map(clientDB);
     }
 
+    /**
+     * @Operation: retrieve client by dni
+     * @Param: Integer
+     * @Return: ClientDTO
+     * */
     public ClientDTO findByDni(Integer dni){
         ClientEntity clientDB = this.clientRepository.findBydni(dni);
         return this.clientMapper.map(clientDB);

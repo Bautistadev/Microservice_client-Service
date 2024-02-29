@@ -220,8 +220,8 @@ paths:
                 - Clients
             security:
                 - bearerAuth: []
-            summary: retrive all Clients
-            operationId: retriveAll
+            summary: retrieve all Clients
+            operationId: retrieveAll
             responses:
                 200:
                     description: Si la consulta no falla
@@ -235,8 +235,8 @@ paths:
                 - Clients
             security:
                 - bearerAuth: []
-            summary: retrive all Clients
-            operationId: retriveClientById
+            summary: retrieve all Clients
+            operationId: retrieveClientById
             parameters:
                 - name: id
                   in: path
