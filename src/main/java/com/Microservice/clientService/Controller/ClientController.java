@@ -28,6 +28,9 @@ public class ClientController implements ClientsApiDelegate {
 
     /**
      * POST
+     * @Operation: CREAR CLIENTE
+     * @Param: CLIENT REQUEST DTO OBJECT
+     * @Return: CLIENT DTO OBJECT
      * */
     @Override
     public ResponseEntity<ClientDTO> createClient(ClientRequestDTO clientRequestDTO) {
@@ -37,6 +40,9 @@ public class ClientController implements ClientsApiDelegate {
 
     /**
      * GET
+     * @Operation: LISTAR CLIENTES POR PROVINCIA
+     * @Param: INTEGER ID
+     * @Return: CLIENT LIST DTO
      * */
     @Override
     public ResponseEntity<ClientListDTO> getAllClientsByProvince(Integer idProvince) {
@@ -45,7 +51,10 @@ public class ClientController implements ClientsApiDelegate {
 
     /**
      * GET
-     * */
+     * @Operation: LISTAR TODOS LOS CLIENTES
+     * @Param: -
+     * @Return: CLIENT LIST DTO
+     * * */
     @Override
     public ResponseEntity<ClientListDTO> retrieveAll() {
         ClientListDTO response = new ClientListDTO().items(this.clientService.findAll());
@@ -54,7 +63,10 @@ public class ClientController implements ClientsApiDelegate {
 
     /**
      * GET
-     * */
+     * @Operation: BUSCAR CLIENTE POR ID
+     * @Param: INTEGER ID
+     * @Return: CLIENTE DTO OBJECT
+     * * */
     @Override
     public ResponseEntity<ClientDTO> retrieveClientById(Integer id) {
         ClientDTO response = this.clientService.findById(id);
@@ -63,7 +75,10 @@ public class ClientController implements ClientsApiDelegate {
 
     /**
      * POST
-     * */
+     * @Operation: ACTUALIZAR CLIENTE
+     * @Param: CLIENT DTO OBJECT
+     * @Return: CLIENT DTO OBJECT (MODIFIED)
+     * * */
     @Override
     public ResponseEntity<ClientDTO> updateClient(ClientDTO clientDTO) {
         return ClientsApiDelegate.super.updateClient(clientDTO);

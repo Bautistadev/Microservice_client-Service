@@ -6,6 +6,10 @@ import com.Microservice.clientService.model.ProvinceDTO;
 import com.Microservice.clientService.model.ProvinceRequestDTO;
 
 public class ProvinceMapperImplements implements ProvinceMapper {
+
+    /**
+     * PronvinceDTO  --> ProvinceEntity
+     * */
     @Override
     public ProvinceEntity map(ProvinceDTO provinceDTO) {
 
@@ -17,6 +21,9 @@ public class ProvinceMapperImplements implements ProvinceMapper {
         return provinceEntity;
     }
 
+    /**
+     * PronvinceRequestDTO  --> ProvinceEntity
+     * */
     @Override
     public ProvinceEntity map(ProvinceRequestDTO provinceRequestDTO) {
         ProvinceEntity provinceEntity = ProvinceEntity.builder()
@@ -26,6 +33,9 @@ public class ProvinceMapperImplements implements ProvinceMapper {
         return provinceEntity;
     }
 
+    /**
+     * ProvinceEntity   --> PronvinceDTO
+     * */
     @Override
     public ProvinceDTO map(ProvinceEntity provinceEntity) {
         ProvinceDTO provinceDTO = new ProvinceDTO()

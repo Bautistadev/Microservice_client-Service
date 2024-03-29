@@ -7,6 +7,10 @@ import com.Microservice.clientService.model.LocationRequestDTO;
 import com.Microservice.clientService.model.ProvinceDTO;
 
 public class LocationMapperImplements implements LocationMapper {
+
+    /**
+     *  LocationDTO --> LocationEntity
+     * */
     @Override
     public LocationEntity map(LocationDTO locationDTO) {
         LocationEntity locationEntity = LocationEntity.builder()
@@ -21,6 +25,9 @@ public class LocationMapperImplements implements LocationMapper {
         return locationEntity;
     }
 
+    /**
+     *   LocationEntity --> LocationDTO
+     * */
     @Override
     public LocationDTO map(LocationEntity locationEntity) {
 
@@ -36,6 +43,9 @@ public class LocationMapperImplements implements LocationMapper {
         return locationDTO;
     }
 
+    /**
+     *  LocationRequestDTO --> LocationEntity
+     * */
     @Override
     public LocationEntity map(LocationRequestDTO locationDTO) {
         LocationEntity locationEntity = LocationEntity.builder()

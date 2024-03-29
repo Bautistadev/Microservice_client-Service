@@ -13,6 +13,10 @@ public class ClientMapperImplements implements ClientMapper{
         this.addressMapper = addressMapper;
     }
 
+
+    /**
+     *  ClientDTO --> ClientEntity
+     * */
     @Override
     public ClientEntity map(ClientDTO clientDTO) {
         ClientEntity client = ClientEntity.builder()
@@ -29,6 +33,9 @@ public class ClientMapperImplements implements ClientMapper{
         return client;
     }
 
+    /**
+     *  ClientRequestDTO --> ClientEntity
+     * */
     @Override
     public ClientEntity map(ClientRequestDTO clientDTO) {
         ClientEntity client = ClientEntity.builder()
@@ -46,6 +53,9 @@ public class ClientMapperImplements implements ClientMapper{
         return client;
     }
 
+    /**
+     *  ClientEntity --> ClientDTO
+     * */
     @Override
     public ClientDTO map(ClientEntity client) {
         ClientDTO clientDTO = new ClientDTO()

@@ -12,7 +12,9 @@ public class AddressMapperImplements implements AddressMapper{
     @Autowired
     private LocationMapper locationMapper;
 
-
+    /**
+     *  AddressEntity --> AddressDTO
+     * */
     @Override
     public AddressDTO map(AddressEntity address) {
         AddressDTO addressDTO = new AddressDTO()
@@ -24,6 +26,10 @@ public class AddressMapperImplements implements AddressMapper{
         return addressDTO;
     }
 
+
+    /**
+     *  AddressDTO --> AddressEntity
+     * */
     @Override
     public AddressEntity map(AddressDTO addressDTO) {
         AddressEntity address = AddressEntity.builder()
@@ -35,6 +41,9 @@ public class AddressMapperImplements implements AddressMapper{
         return address;
     }
 
+    /**
+     *  AddressRequestDTO --> AddressEntity
+     * */
     @Override
     public AddressEntity map(AddressRequestDTO addressDTO) {
         AddressEntity address = AddressEntity.builder()
