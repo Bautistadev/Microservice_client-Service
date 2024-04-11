@@ -1,11 +1,10 @@
 package com.Microservice.clientService.Service;
 
 import com.Microservice.clientService.Entity.ProvinceEntity;
-import com.Microservice.clientService.Repository.ProvinceRepository;
+import com.Microservice.clientService.Controller.Repository.ProvinceRepository;
 import com.Microservice.clientService.Service.Mapper.ProvinceMapper;
 import com.Microservice.clientService.model.ProvinceDTO;
 import com.Microservice.clientService.model.ProvinceRequestDTO;
-import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

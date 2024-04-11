@@ -3,7 +3,7 @@ package com.Microservice.clientService;
 import com.Microservice.clientService.Service.AddressService;
 import com.Microservice.clientService.Service.ClientService;
 import com.Microservice.clientService.Service.LocationService;
-import com.Microservice.clientService.model.*;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

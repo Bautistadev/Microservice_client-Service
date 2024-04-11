@@ -27,6 +27,7 @@ public class AddressEntity {
     @JoinColumn(name="locationId")
     private LocationEntity location;
 
+
     @Override
     public String toString() {
         return "AddressEntity{" +

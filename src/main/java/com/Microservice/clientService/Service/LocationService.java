@@ -1,7 +1,7 @@
 package com.Microservice.clientService.Service;
 
 import com.Microservice.clientService.Entity.LocationEntity;
-import com.Microservice.clientService.Repository.LocationRepository;
+import com.Microservice.clientService.Controller.Repository.LocationRepository;
 import com.Microservice.clientService.Service.Mapper.LocationMapper;
 import com.Microservice.clientService.model.LocationDTO;
 import com.Microservice.clientService.model.LocationRequestDTO;

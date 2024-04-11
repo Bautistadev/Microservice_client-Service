@@ -1,11 +1,9 @@
 package com.Microservice.clientService.Configuration;
 
-import com.Microservice.clientService.ClientsApiDelegate;
-import com.Microservice.clientService.Controller.ClientController;
-import com.Microservice.clientService.Repository.AddressRepository;
-import com.Microservice.clientService.Repository.ClientRepository;
-import com.Microservice.clientService.Repository.LocationRepository;
-import com.Microservice.clientService.Repository.ProvinceRepository;
+import com.Microservice.clientService.Controller.Repository.AddressRepository;
+import com.Microservice.clientService.Controller.Repository.ClientRepository;
+import com.Microservice.clientService.Controller.Repository.LocationRepository;
+import com.Microservice.clientService.Controller.Repository.ProvinceRepository;
 import com.Microservice.clientService.Service.*;
 import com.Microservice.clientService.Service.Mapper.*;
 import org.springframework.context.annotation.Bean;

@@ -1,12 +1,10 @@
 package com.Microservice.clientService.Service;
 
 import com.Microservice.clientService.Entity.AddressEntity;
-import com.Microservice.clientService.Entity.LocationEntity;
-import com.Microservice.clientService.Repository.AddressRepository;
+import com.Microservice.clientService.Controller.Repository.AddressRepository;
 import com.Microservice.clientService.Service.Mapper.AddressMapper;
 import com.Microservice.clientService.model.AddressDTO;
 import com.Microservice.clientService.model.AddressRequestDTO;
-import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +31,8 @@ public class AddressService {
                 addressRequestDTO.getName(),
                 addressRequestDTO.getNumber(),
                 addressRequestDTO.getLocation().getId());
+
+        System.out.println(address);
 
        if(address == null){
           address = this.addressRepository.save(this.addressMapper.map(addressRequestDTO));
