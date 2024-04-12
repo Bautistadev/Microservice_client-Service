@@ -1,11 +1,12 @@
 package com.Microservice.clientService.Configuration;
 
-import com.Microservice.clientService.Controller.Repository.AddressRepository;
-import com.Microservice.clientService.Controller.Repository.ClientRepository;
-import com.Microservice.clientService.Controller.Repository.LocationRepository;
-import com.Microservice.clientService.Controller.Repository.ProvinceRepository;
+import com.Microservice.clientService.Repository.AddressRepository;
+import com.Microservice.clientService.Repository.ClientRepository;
+import com.Microservice.clientService.Repository.LocationRepository;
+import com.Microservice.clientService.Repository.ProvinceRepository;
 import com.Microservice.clientService.Service.*;
 import com.Microservice.clientService.Service.Mapper.*;
+import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -48,8 +49,8 @@ public class BeanConfigure {
     }
 
     @Bean
-    public AddressService addressService(AddressRepository addressRepository, AddressMapper addressMapper){
-        return new AddressService(addressRepository,addressMapper);
+    public AddressService addressService(AddressRepository addressRepository, AddressMapper addressMapper,LocationService locationService){
+        return new AddressService(addressRepository,addressMapper,locationService);
     }
 
     @Bean
@@ -58,4 +59,9 @@ public class BeanConfigure {
     }
 
 
+/*
+    @Bean
+    public InetUtils inetUtils(){
+        return new InetUtils();
+    }*/
 }

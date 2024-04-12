@@ -81,6 +81,7 @@ public class ClientController implements ClientsApiDelegate {
      * * */
     @Override
     public ResponseEntity<ClientDTO> updateClient(ClientDTO clientDTO) {
-        return ClientsApiDelegate.super.updateClient(clientDTO);
+        ClientDTO response = this.clientService.update(clientDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

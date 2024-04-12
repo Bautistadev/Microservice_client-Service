@@ -1,7 +1,7 @@
 package com.Microservice.clientService.Service;
 
 import com.Microservice.clientService.Entity.ClientEntity;
-import com.Microservice.clientService.Controller.Repository.ClientRepository;
+import com.Microservice.clientService.Repository.ClientRepository;
 import com.Microservice.clientService.Service.Mapper.ClientMapper;
 import com.Microservice.clientService.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +35,46 @@ public class ClientService {
      * */
     public ClientDTO save(ClientRequestDTO clientRequestDTO) {
 
-        AddressDTO addressDTO = clientRequestDTO.getAddress();
-
-        ClientEntity client = this.clientRepository.findBydni(clientRequestDTO.getDni());
-
-        if(client == null){
-            this.addressService.save(addressDTO);
-            client = this.clientRepository.save(this.clientMapper.map(clientRequestDTO));
+        /**
+         * SI EL ID ES NULO, DEBE DARSE DE ALTA LA DIRECCION
+         * */
+        if(clientRequestDTO.getAddress().getId() == null) {
+            /**
+             * PERSISTIMOS LA DIRECCION
+             * */
+            AddressDTO address = this.addressService.save(clientRequestDTO.getAddress());
+            clientRequestDTO.setAddress(address);
+            /**
+             * PERSISTIMOS EL CLIENTE CON LA DIRECCIONDADA DE ALTA
+             * */
+            ClientEntity response = this.clientRepository.save(this.clientMapper.map(clientRequestDTO));
+            return this.clientMapper.map(response);
         }
-        return this.clientMapper.map(client);
+
+        /**
+         * SI LA DIRECCION SE ENCUENTRA REGISTRADA, SOLO GUARDAMOS AL CLIENTE
+         * */
+        ClientEntity response = this.clientRepository.save(this.clientMapper.map(clientRequestDTO));
+
+        return this.clientMapper.map(response);
+    }
+
+    /**
+     * @Operation: UPDATE
+     * @Param: ClientDTO
+     * @Return: ClientDTO
+     * */
+    public ClientDTO update(ClientDTO clientDTO){
+        if(clientDTO.getAddress().getId() == null) {
+            AddressDTO address = this.addressService.save(clientDTO.getAddress());
+            clientDTO.setAddress(address);
+            ClientEntity response = this.clientRepository.save(this.clientMapper.map(clientDTO));
+            return this.clientMapper.map(response);
+        }
+
+        ClientEntity response = this.clientRepository.save(this.clientMapper.map(clientDTO));
+
+        return this.clientMapper.map(response);
     }
 
     /**
@@ -78,4 +109,5 @@ public class ClientService {
         ClientEntity clientDB = this.clientRepository.findBydni(dni);
         return this.clientMapper.map(clientDB);
     }
+
 }

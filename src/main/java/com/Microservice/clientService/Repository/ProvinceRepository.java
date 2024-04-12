@@ -1,4 +1,4 @@
-package com.Microservice.clientService.Controller.Repository;
+package com.Microservice.clientService.Repository;
 
 import com.Microservice.clientService.Entity.ProvinceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

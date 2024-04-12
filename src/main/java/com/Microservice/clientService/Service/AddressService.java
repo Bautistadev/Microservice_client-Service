@@ -1,10 +1,11 @@
 package com.Microservice.clientService.Service;
 
 import com.Microservice.clientService.Entity.AddressEntity;
-import com.Microservice.clientService.Controller.Repository.AddressRepository;
+import com.Microservice.clientService.Repository.AddressRepository;
 import com.Microservice.clientService.Service.Mapper.AddressMapper;
 import com.Microservice.clientService.model.AddressDTO;
 import com.Microservice.clientService.model.AddressRequestDTO;
+import com.Microservice.clientService.model.LocationDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +16,12 @@ public class AddressService {
 
     private AddressRepository addressRepository;
     private AddressMapper addressMapper;
+    private LocationService locationService;
 
-    public AddressService(AddressRepository addressRepository, AddressMapper addressMapper) {
+    public AddressService(AddressRepository addressRepository, AddressMapper addressMapper,LocationService locationService) {
         this.addressRepository = addressRepository;
         this.addressMapper = addressMapper;
+        this.locationService = locationService;
     }
 
     /**
@@ -27,16 +30,31 @@ public class AddressService {
      * @Return: AddressDTO
      * */
     public AddressDTO save(AddressRequestDTO addressRequestDTO){
+        /**
+         * EXISTE LA DIRECCION
+        * */
         AddressEntity address = this.addressRepository.findByAttribute(
                 addressRequestDTO.getName(),
                 addressRequestDTO.getNumber(),
                 addressRequestDTO.getLocation().getId());
 
-        System.out.println(address);
+        /**
+         * SINO EXISTE
+         * */
+        if(address == null){
+            /**
+             * EXISTE LA LOCALIDAD
+             * */
+            if(addressRequestDTO.getLocation().getId() == null){
+                /**
+                 * DAMOS DE ALTA LA LOCALIDAD
+                 * */
+                LocationDTO locationDTO = this.locationService.save(addressRequestDTO.getLocation());
+                addressRequestDTO.setLocation(locationDTO);
+            }
 
-       if(address == null){
-          address = this.addressRepository.save(this.addressMapper.map(addressRequestDTO));
-       }
+            address = this.addressRepository.save(this.addressMapper.map(addressRequestDTO));
+        }
 
         return this.addressMapper.map(address);
     }
@@ -52,11 +70,26 @@ public class AddressService {
                 addressRequestDTO.getNumber(),
                 addressRequestDTO.getLocation().getId());
 
-        if(address == null){
-            address = this.addressRepository.save(this.addressMapper.map(addressRequestDTO));
-        }
+        /**
+         * SINO EXISTE
+         * */
+       if(address == null){
+            /**
+             * EXISTE LA LOCALIDAD
+             * */
+           if(addressRequestDTO.getLocation().getId() == null){
+                /**
+                 * DAMOS DE ALTA LA LOCALIDAD
+                 * */
+                LocationDTO locationDTO = this.locationService.save(addressRequestDTO.getLocation());
+                addressRequestDTO.setLocation(locationDTO);
+           }
 
-        return this.addressMapper.map(address);
+           address = this.addressRepository.save(this.addressMapper.map(addressRequestDTO));
+       }
+
+       return this.addressMapper.map(address);
+
     }
 
     /**

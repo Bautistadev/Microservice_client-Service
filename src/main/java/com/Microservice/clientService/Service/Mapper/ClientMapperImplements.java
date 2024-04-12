@@ -46,9 +46,7 @@ public class ClientMapperImplements implements ClientMapper{
                 .birth(clientDTO.getBirth())
                 .cuil(clientDTO.getCuil())
                 .telephone(clientDTO.getTelephone())
-                .address(AddressEntity.builder()
-                        .id(clientDTO.getAddress().getId())
-                        .build())
+                .address(this.addressMapper.map(clientDTO.getAddress()))
                 .build();
         return client;
     }

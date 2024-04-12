@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+
 
 import java.time.LocalDate;
 
@@ -34,7 +36,7 @@ public class ClientEntity {
     @Temporal(TemporalType.DATE)
     private LocalDate birth;
     @ManyToOne
-    @JoinColumn(name="addressId")
+    @JoinColumn(name="addressId",referencedColumnName = "id")
     private AddressEntity address;
 
     @Override
