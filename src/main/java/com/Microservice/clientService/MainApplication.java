@@ -32,18 +32,6 @@ public class MainApplication implements CommandLineRunner {
 		application.setApplicationStartup(new BufferingApplicationStartup(2048));
 
 
-		Random random = new Random();
-
-		String word="";
-		String[] letters = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N",
-				"Ñ","O","P","Q","R","S","T","U","V","W","X","Z","a","b","c","d","e","f","g",
-				"h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","z"};
-
-
-		IntStream.range(0,15).forEach(i ->{
-			System.out.println(word+letters[i]);
-		});
-
 		application.run(args);
 
 	}

@@ -1,10 +1,7 @@
-package com.Microservice.clientService.ClientRepository;
+package com.Microservice.clientService.Repository;
 
 import com.Microservice.clientService.Entity.AddressEntity;
 import com.Microservice.clientService.Entity.ClientEntity;
-import com.Microservice.clientService.Entity.LocationEntity;
-import com.Microservice.clientService.Repository.AddressRepository;
-import com.Microservice.clientService.Repository.ClientRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-import javax.swing.text.html.parser.Entity;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
