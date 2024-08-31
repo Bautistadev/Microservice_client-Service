@@ -9,6 +9,7 @@
 - [Descripción de las dependencias](#Descripcion-de-las-dependencias)
 - [Descripcion de las herramientas CI/CD](#Descripcion-de-las-herramientas-CI/CD).
 - [Seguridad](#Seguridad).
+- [Variables de entorno](#Variables-de-entorno)
 - [Demostración de funciones](#Demostracion-de-funciones).
 
 ## Descripcion del proyecto
@@ -339,6 +340,20 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
                [Tabla de provincias]
 
 
+```
+
+## Variables de entorno
+```
++ Configuration server
+
+configuration_uri= [Server de configuracion]
+profile= [Perfil(dev, prod)]
+```
+
+```
++ Data base
+database_username= [database username]
+database_password= [database password]
 ```
 
 ## Demostración de funciones
