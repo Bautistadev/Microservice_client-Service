@@ -110,4 +110,21 @@ public class ClientService {
         return this.clientMapper.map(clientDB);
     }
 
+    public List<ClientDTO> findByName(String name){
+
+        if(name.isEmpty() || name == null)
+            new IllegalArgumentException();
+
+        return this.clientRepository
+                .findByname(name)
+                .stream()
+                .map(e -> this.clientMapper.map(e))
+                .collect(Collectors.toList());
+    }
+
+
+    public ClientEntity findClientByProvince(String name){
+        //this.clientRepository.findByProvince(name)
+        return null;
+    }
 }

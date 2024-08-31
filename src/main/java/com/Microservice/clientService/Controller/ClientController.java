@@ -84,4 +84,31 @@ public class ClientController implements ClientsApiDelegate {
         ClientDTO response = this.clientService.update(clientDTO);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+
+    /**
+     * POST
+     * @Operation: RETORNA CLIENTE POR SU NOMBRE
+     * @Param: STRING
+     * @Return: CLIENT LIST
+     * * */
+    @Override
+    public ResponseEntity<ClientListDTO> retrieveClientByName(String name) {
+
+        if (name.isEmpty() || name == null)
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .build();
+
+        ClientListDTO response = new ClientListDTO().items(this.clientService.findByName(name));
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
+    }
+
+    @Override
+    public ResponseEntity<ClientDTO> retrieveClientByProvince(String province) {
+        return ClientsApiDelegate.super.retrieveClientByProvince(province);
+    }
 }

@@ -21,6 +21,7 @@ import java.util.stream.IntStream;
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableFeignClients
+@EnableDiscoveryClient
 @ComponentScan(basePackages = {"com.Microservice.clientService"})
 public class MainApplication implements CommandLineRunner {
 

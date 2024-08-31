@@ -274,7 +274,10 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ClientDTO'
+                                message:
+                                    type: string
+                                    format: text
+                                    default: Producto eliminado
         
     /clients/province/{idProvince}:
         get:
@@ -295,6 +298,54 @@ paths:
             responses:
                 200:
                     description: si la consulta no falla
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClientListDTO'
+
+    /clients/province/{province}:
+        get:
+            tags:
+                - Clients
+            security:
+                - bearerAuth: [ ]
+            summary: retrieve all Clients by province
+            operationId: retrieveClientByProvince
+            parameters:
+                - name: province
+                  in: path
+                  description: provincia del cliente
+                  required: true
+                  schema:
+                      type: string
+
+            responses:
+                200:
+                    description: Si la consulta no falla
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClientDTO'
+
+    /clients/name/{name}:
+        get:
+            tags:
+                - Clients
+            security:
+                - bearerAuth: [ ]
+            summary: retrieve all Clients by Name
+            operationId: retrieveClientByName
+            parameters:
+                - name: name
+                  in: path
+                  description: nombre del cliente
+                  required: true
+                  schema:
+                      type: string
+
+            responses:
+                200:
+                    description: Si la consulta no falla
                     content:
                         application/json:
                             schema:
