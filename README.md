@@ -9,7 +9,7 @@
 - [Descripción de las dependencias](#Descripcion-de-las-dependencias)
 - [Descripcion de las herramientas CI/CD](#Descripcion-de-las-herramientas-CI/CD).
 - [Seguridad](#Seguridad).
-- [Demostración de funciones y aplicaciones](#Demostracion-de-funciones-y-aplicaciones).
+- [Demostración de funciones](#Demostracion-de-funciones).
 
 ## Descripcion del proyecto
 ---
@@ -341,3 +341,31 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 ```
 
+## Demostración de funciones
+
+<h4>El microservicio establece conexión con el servidor de descubrimiento:</h4>
+
+![Captura de pantalla 2024-08-31 a la(s) 17 47 40](https://github.com/user-attachments/assets/a1fdf3fe-e367-4bde-8b11-2d9f898ea550)
+
+
+<img width="1655" alt="Captura de pantalla 2024-08-31 a la(s) 17 47 57" src="https://github.com/user-attachments/assets/7e4d1d31-b54f-4fed-a082-ece8c2b83a11">
+
+<h4>El microservicio establece una buena conexión con el servidor de configuraciones:</h4>
+
+![Captura de pantalla 2024-08-31 a la(s) 17 48 52](https://github.com/user-attachments/assets/43c010b0-d678-4fae-a212-608609994d78)
+
+<h4>El microservicio lista todos los clientes correctamente:</h4>
+
+<img width="1260" alt="Captura de pantalla 2024-08-31 a la(s) 18 03 52" src="https://github.com/user-attachments/assets/689d3ae5-f31f-411c-b423-2e61b81e16b7">
+
+<h4>El microservicio lista los clientes por su id como filtro:</h4>
+
+<img width="1284" alt="Captura de pantalla 2024-08-31 a la(s) 18 05 10" src="https://github.com/user-attachments/assets/81272fbf-a2bd-4969-a3f4-3f19be73e37e">
+
+<h4>El microservicio lista los clientes por su nombre como filtro:</h4>
+
+<img width="1243" alt="Captura de pantalla 2024-08-31 a la(s) 18 07 24" src="https://github.com/user-attachments/assets/a23010ec-c1ea-4aa3-a295-a46538686938">
+
+<h4>El microservicio establece el alta de un cliente de manera correcta:</h4>
+
+<img width="1241" alt="Captura de pantalla 2024-08-31 a la(s) 18 09 28" src="https://github.com/user-attachments/assets/c688c5bd-8ce4-4245-bf65-a2dca1e00b9c">
