@@ -9,7 +9,7 @@
 - [Descripción de las dependencias](#Descripcion-de-las-dependencias)
 - [Descripcion de las herramientas CI/CD](#Descripcion-de-las-herramientas-CI/CD).
 - [Seguridad](#Seguridad).
-- [Demostración de funciones y aplicaciones](#Demostracion-de-funciones-y-aplicaciones).
+- [Demostración de funciones](#Demostracion-de-funciones).
 
 ## Descripcion del proyecto
 ---
@@ -107,7 +107,14 @@ Spring Data JPA tiene como objetivo mejorar de manera significante la implelemta
    <artifactId>spring-boot-starter-data-jpa</artifactId>
 </dependency>
 ```
-
+```
++ Properties
+spring.jpa.properties.dialect = org.hibernate.dialect.MySQL8Dialect
+spring.jpa.show-sql = true
+spring.jpa.properties.hibernate.format_sql = true
+spring.jpa.properties.hibernate.hbm2ddl.auto = update
+spring.jpa.properties.generate-ddl = true
+```
 ```
 + Implemetacion
 public interface ProductRepository implements JpaRepository
@@ -248,3 +255,117 @@ Jenkins es una plataforma de automatización de código abierto desarrollada en 
 Un pipeline es una herramienta avanzada que permite definir y gestionar flujos de trabajo completos y automatizados. Es un conjunto de pasos y jobs que se ejecutan secuencialmente para llevar a cabo una tareas específicas. En otras palabras es una secuencia ordenada de pasos que permiten llevar a cabo una tarea compleja.
 
 ![image](https://github.com/user-attachments/asse
+
+<h4>Docker</h4>
+Docker es una herramienta de virtualización de sistema operativos, basado en el uso de contenedores.
+Un contenedor es una instancia ejecutable de una imagen de Docker. Contiene todo lo que se necesita para ejecutar la aplicación.
+A diferencia de las máquinas virtuales que requieren un sistema operativo completo y su propio kernel, los contenedores Docker comparten el kernel del sistema operativo host.
+Esto significa que todos los contenedores que se ejecutan en un host Docker utilizan el mismo kernel. Esta arquitectura reduce significativamente el overhead en comparación con las máquinas virtuales, ya que los contenedores no necesitan emular hardware o cargar un kernel propio, resultando en un inicio más rápido y menor consumo de recursos.
+
+<img src="image-2.png" alt="Descripción de la imagen" width="600"/>
+
+## Base de datos
+
+El siguiente proyecto hace uso de un gestor de base de datos MySQL, debido a su sencillez y además el proyecto en un entorno de desarrollo, el cual se desea
+comprobar la correcta funcionalidad de las operaciones y peticiones, no se amerita utilizar un gestor de base de datos más complejo y corporativo como
+podría ser un Gestor de Oracle o MySQL Server. En caso de querer realizar pruebas con un Gestor más poderoso, solo basta con cambiar la dependencia de MySQL
+por la del Gestor de base de datos deseado. Ya que JPA se encarga del resto.
+
+
+```
++ Maven
+<dependency>
+	<groupId>com.mysql</groupId>
+	<artifactId>mysql-connector-j</artifactId>
+	<scope>runtime</scope>
+</dependency>
+```
+
+```
++ Properties
+spring.datasource.username=${database_username}
+spring.datasource.password=${database_password}
+```
+
+```
++ Other properties in configuration directory on github
+
+spring.datasource.url=jdbc:mysql://localhost:3306/eCommerce?allowPublicKeyRetrieval=true&useSSL=false
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+```
+>[!NOTE]
+>Link del repositorio de propiedades: https://github.com/Bautistadev/MIcroService_properties-configuration
+
+![Captura de pantalla 2024-08-31 a la(s) 00 35 10](https://github.com/user-attachments/assets/ba6cc0fa-e3c7-41af-a786-014da3a2c75e)
+
+
+```
+   +--------------------------+                   +--------------------------+
+   |         client           |  		  |          address         |  
+   +--------------------------+               	  +--------------------------+
+   | - id: Integer (pk)	      |		          |  - id: Integer (pk)      |
+   | - birth: DATE            |                   |  - name: Varchar(255)    | 
+   | - cuil: Integer          |			  |  - number: Integer       |
+   | - dni: Integer           |		          |  - location_id: Integer  |
+   | - name: Varchar(255)     |	                  |			     |
+   | - email: Varchar(255)    |			  +--------------------------+
+   | - lastname: Varchar(255) |			[Tabla que representa la marca]
+   | - telephone: Varchar(255)|
+   | - address_id: Integer    |			  
+   +--------------------------+		          
+[Tabla que representa el producto]		
+
+  
+
+	   +--------------------------+
+	   |          location        |
+	   +--------------------------+
+	   | - id: Integer (pk)	      |	
+	   | - name: Varchar(255)     | 
+	   | - postal_code: Integer   |
+	   | - id_province: Date      |
+	   |			      |
+	   +--------------------------+
+     [Tabla que representa las localizaciones]
+
+	   +--------------------------+
+	   |          province        |
+	   +--------------------------+
+	   | - id: Integer (pk)	      |	
+	   | - name: Varchar          | 
+	   |			      |
+	   +--------------------------+
+               [Tabla de provincias]
+
+
+```
+
+## Demostración de funciones
+
+<h4>El microservicio establece conexión con el servidor de descubrimiento:</h4>
+
+![Captura de pantalla 2024-08-31 a la(s) 17 47 40](https://github.com/user-attachments/assets/a1fdf3fe-e367-4bde-8b11-2d9f898ea550)
+
+
+<img width="1655" alt="Captura de pantalla 2024-08-31 a la(s) 17 47 57" src="https://github.com/user-attachments/assets/7e4d1d31-b54f-4fed-a082-ece8c2b83a11">
+
+<h4>El microservicio establece una buena conexión con el servidor de configuraciones:</h4>
+
+![Captura de pantalla 2024-08-31 a la(s) 17 48 52](https://github.com/user-attachments/assets/43c010b0-d678-4fae-a212-608609994d78)
+
+<h4>El microservicio lista todos los clientes correctamente:</h4>
+
+<img width="1260" alt="Captura de pantalla 2024-08-31 a la(s) 18 03 52" src="https://github.com/user-attachments/assets/689d3ae5-f31f-411c-b423-2e61b81e16b7">
+
+<h4>El microservicio lista los clientes por su id como filtro:</h4>
+
+<img width="1284" alt="Captura de pantalla 2024-08-31 a la(s) 18 05 10" src="https://github.com/user-attachments/assets/81272fbf-a2bd-4969-a3f4-3f19be73e37e">
+
+<h4>El microservicio lista los clientes por su nombre como filtro:</h4>
+
+<img width="1243" alt="Captura de pantalla 2024-08-31 a la(s) 18 07 24" src="https://github.com/user-attachments/assets/a23010ec-c1ea-4aa3-a295-a46538686938">
+
+<h4>El microservicio establece el alta de un cliente de manera correcta:</h4>
+
+<img width="1241" alt="Captura de pantalla 2024-08-31 a la(s) 18 09 28" src="https://github.com/user-attachments/assets/c688c5bd-8ce4-4245-bf65-a2dca1e00b9c">
