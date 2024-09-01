@@ -108,7 +108,15 @@ public class ClientController implements ClientsApiDelegate {
     }
 
     @Override
-    public ResponseEntity<ClientDTO> retrieveClientByProvince(String province) {
-        return ClientsApiDelegate.super.retrieveClientByProvince(province);
+    public ResponseEntity<ClientDTO> retrieveClientByDni(Integer dni) {
+
+        if(dni == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+        if((dni instanceof Integer) == false) {
+            throw new NumberFormatException();
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(this.clientService.findByDni(dni));
     }
 }

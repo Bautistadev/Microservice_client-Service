@@ -303,30 +303,6 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/ClientListDTO'
 
-    /clients/province/{province}:
-        get:
-            tags:
-                - Clients
-            security:
-                - bearerAuth: [ ]
-            summary: retrieve all Clients by province
-            operationId: retrieveClientByProvince
-            parameters:
-                - name: province
-                  in: path
-                  description: provincia del cliente
-                  required: true
-                  schema:
-                      type: string
-
-            responses:
-                200:
-                    description: Si la consulta no falla
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/ClientDTO'
-
     /clients/name/{name}:
         get:
             tags:
@@ -350,6 +326,31 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/ClientListDTO'
+
+    /clients/dni/{dni}:
+        get:
+            tags:
+                - Clients
+            security:
+                - bearerAuth: [ ]
+            summary: retrieve all Clients by DNI
+            operationId: retrieveClientByDni
+            parameters:
+                - name: dni
+                  in: path
+                  description: nombre del cliente
+                  required: true
+                  schema:
+                      type: Integer
+                      format: Int32
+
+            responses:
+                200:
+                    description: Si la consulta no falla
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ClientDTO'
 
     
     
