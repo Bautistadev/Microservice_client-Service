@@ -35,7 +35,8 @@ APIs RESTful: Proporciona una serie de endpoints RESTful que permiten a otros se
 - 🟡 PUT /clients/{id}: Actualizar un producto existente.
 - 🔴 DELETE /clients/{id}: Eliminar un producto.
 - 🔵 GET /clients/{id}: Obtener detalles de un producto específico por medio del id.
-- 🔵 GET /clients/name/{name}: Obtener el listado de clientes que comparten nombres 
+- 🔵 GET /clients/name/{name}: Obtener el listado de clientes que comparten nombres
+- 🔵 GET /clients/dni/{dni}: Obtener el cliente cuyo dni coincide con el parametro
 
 <h6>Despliegue y escalabilidad</h6>
 
