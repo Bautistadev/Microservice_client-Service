@@ -70,6 +70,9 @@ public class ClientController implements ClientsApiDelegate {
     @Override
     public ResponseEntity<ClientDTO> retrieveClientById(Integer id) {
         ClientDTO response = this.clientService.findById(id);
+        System.out.println("id resibido "+id);
+        System.out.println("responde por api microservice");
+        System.out.println(response);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
@@ -101,6 +104,7 @@ public class ClientController implements ClientsApiDelegate {
                     .build();
 
         ClientListDTO response = new ClientListDTO().items(this.clientService.findByName(name));
+
 
         return ResponseEntity
                 .status(HttpStatus.OK)
